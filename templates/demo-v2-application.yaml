@@ -12,6 +12,9 @@ spec:
     helm:
       valueFiles:
         - {{ .Values.environment }}.yaml
+      parameters:
+      - name: environment
+        value: {{ .Values.environment }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Values.namespace }}
