@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-app-of-apps-dev
+  namespace: argocd
+spec:
+  destination:
+    namespace: {{ .Values.namespace }}
+    server: 'https://kubernetes.default.svc'
+  project: app-of-apps
+  source:
+    helm:
+      valueFiles:
+        - dev.yaml
+    path: .
+    repoURL: 'https://github.com/jrdegroot/demo-app-of-apps-deployment.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
