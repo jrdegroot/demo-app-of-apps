@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: {{ .Values.namespace }}
+    namespace: demo
     server: 'https://kubernetes.default.svc'
   project: app-of-apps
   source:
@@ -14,7 +14,7 @@ spec:
         - dev.yaml
     path: .
     repoURL: 'https://github.com/jrdegroot/demo-app-of-apps-deployment.git'
-    targetRevision: HEAD
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
